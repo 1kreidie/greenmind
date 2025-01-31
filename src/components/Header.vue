@@ -29,7 +29,7 @@
     color: #484848
     font-size: 52px
 
-.header__link-and-btn 
+.header__link-and-btn
     width: 764px
     justify-content: space-between
     display: flex
