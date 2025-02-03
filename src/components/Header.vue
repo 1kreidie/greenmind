@@ -1,7 +1,8 @@
 <script>
-    export default {
-        
-    }
+import Button from './Button.vue';
+export default{
+    components:{ Button },
+}
 </script>
 
 <template>
@@ -13,16 +14,15 @@
             <a class="poppins-regular" href="#">New Arrivals</a>
             <a class="poppins-regular" href="#">Packages</a>
             <a class="poppins-regular" href="#">About</a>
-            <button class="btn poppins-regular">Sign in</button>
+            <Button>Sign Up</Button>
         </div>
   </header>
 </template>
 
-<style lang="sass">
+<style lang="sass" scoped>
 .header 
     display: flex
     justify-content: space-between
-    max-width: 1280px
     margin: 70px auto 94px
 
 .header__head 
@@ -42,14 +42,6 @@ a
     color: #484848
     cursor: pointer
     font-size: 16px
-
-.btn 
-    padding: 20px 46px
-    border-radius: 10px
-    color: #FFFFFF
-    background-color: #000000
-    font-size: 16px
-    cursor: pointer
 
 </style>
 

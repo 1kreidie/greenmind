@@ -1,7 +1,9 @@
 <script>
+import DealTheMonth from './components/DealTheMonth.vue';
 import Header from './components/Header.vue';
+import UltimateSale from './components/UltimateSale.vue';
 export default{
-  components: { Header },
+  components: { Header, UltimateSale, DealTheMonth },
   data(){
     return{
 
@@ -11,37 +13,17 @@ export default{
 </script>
 
 <template>
-  <div>
+  <div class="box">
     <Header></Header>
-    <div class="wrapper">
-      <div class="man-wrapper">
-        <img class="man-wrapper__man-img" src="../src/assets/img/img1.svg" alt="man">
-      </div>
-      <div class="center-column">
-        <div class="girls-top">
-          <img class="girls-top__img" src="../src/assets/img/img2.svg" alt="girl">
-        </div>
-        <div class="block-center">
-          <h1 class="block-center__first poppins-medium">ULTIMATE</h1>
-          <h1 class="block-center__second poppins-medium">SALE</h1>
-          <p class="block-center__paragraph poppins-regular">NEW COLLECTION</p>
-          <button class="block-center__btn poppins-medium">SHOP NOW</button>
-        </div>
-        <img src="../src/assets/img/img3.png" alt="girl">
-      </div>
-      <div class="man-wrapper man-right">
-        <img class="man-wrapper__man-img" src="../src/assets/img/img4.svg" alt="man">
-      </div>
-      
+    <UltimateSale/>
+    <div class="brands-logo">
+        <img src="../src/assets/img/logo1.svg" alt="brand-logo">
+        <img src="../src/assets/img/logo2.svg" alt="brand-logo">
+        <img src="../src/assets/img/logo3.svg" alt="brand-logo">
+        <img src="../src/assets/img/logo4.svg" alt="brand-logo">
+        <img src="../src/assets/img/logo5.svg" alt="brand-logo">
     </div>
-    <div class="icon">
-        <button class="icon__basket">
-          <img src="../src/assets/img/icon.svg" alt="icon">
-        </button>
-        <button class="icon__up">
-          <img src="../src/assets/img/vector.svg" alt="icon">
-        </button>
-      </div>
+    <DealTheMonth/>
   </div>
 </template>
 
@@ -52,10 +34,11 @@ $color: #484848
 $color-btn: #000
 $pointer: pointer
 
-
-.wrapper 
+.box
   max-width: 1280px
   margin: 0 auto
+  
+.wrapper 
   position: relative
   height: 756px
 
@@ -143,4 +126,11 @@ $pointer: pointer
     border-radius: 100%
     border: 2px solid $color-btn
     cursor: $pointer
+
+.brands-logo
+  display: flex
+  justify-content: space-between
+  flex-wrap: wrap
+  margin: 83px 0
+  flex-direction: row
 </style>
