@@ -1,12 +1,35 @@
 <script>
+import BrandLogos from './components/BrandLogos.vue';
 import DealTheMonth from './components/DealTheMonth.vue';
 import Header from './components/Header.vue';
 import UltimateSale from './components/UltimateSale.vue';
-export default{
-  components: { Header, UltimateSale, DealTheMonth },
-  data(){
-    return{
 
+export default {
+  components: {
+    Header,
+    UltimateSale,
+    DealTheMonth,
+    BrandLogos
+  },
+  data() {
+    return {
+      items: [
+        {
+          image: '../src/assets/img/logo1.svg'
+        },
+        {
+          image: '../src/assets/img/logo2.svg'
+        },
+        {
+          image: '../src/assets/img/logo3.svg'
+        },
+        {
+          image: '../src/assets/img/logo4.svg'
+        },
+        {
+          image: '../src/assets/img/logo5.svg'
+        }
+      ]
     }
   }
 }
@@ -16,12 +39,11 @@ export default{
   <div class="box">
     <Header></Header>
     <UltimateSale/>
-    <div class="brands-logo">
-        <img src="../src/assets/img/logo1.svg" alt="brand-logo">
-        <img src="../src/assets/img/logo2.svg" alt="brand-logo">
-        <img src="../src/assets/img/logo3.svg" alt="brand-logo">
-        <img src="../src/assets/img/logo4.svg" alt="brand-logo">
-        <img src="../src/assets/img/logo5.svg" alt="brand-logo">
+    <div class="brands-box">
+    <BrandLogos 
+    v-for="item in items"
+    :key="item"
+    :image="item.image"/>
     </div>
     <DealTheMonth/>
   </div>
@@ -34,6 +56,11 @@ $color: #484848
 $color-btn: #000
 $pointer: pointer
 
+.brands-box
+  display: flex
+  justify-content: space-between
+  padding: 82px 0
+  
 .box
   max-width: 1280px
   margin: 0 auto
@@ -127,10 +154,4 @@ $pointer: pointer
     border: 2px solid $color-btn
     cursor: $pointer
 
-.brands-logo
-  display: flex
-  justify-content: space-between
-  flex-wrap: wrap
-  margin: 83px 0
-  flex-direction: row
 </style>
