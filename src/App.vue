@@ -37,7 +37,7 @@ export default {
 
 <template>
   <div class="box">
-    <Header></Header>
+    <Header/>
     <UltimateSale/>
     <div class="brands-box">
     <BrandLogos 

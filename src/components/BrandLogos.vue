@@ -12,8 +12,3 @@
 <template>
     <img :src="image" alt="brand-logo">
 </template>
-
-
-<style lang="sass" >
-
-</style>
