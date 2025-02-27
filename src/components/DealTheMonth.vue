@@ -2,42 +2,60 @@
 import moment from 'moment';
 import Button from './Button.vue';
 import Swiper from './Swiper.vue';
+
 export default {
-    components:{ Button, Swiper },
+    components: { Button, Swiper },
     data() {
         return {
-            interval: 1000,
-            unitsOfMeasurements: [{
-                id: 1,
-                value: moment().format('D'),
-                period: 'Days'
-            },
-            {
-                id: 2,
-                value: moment().format('kk'),
-                period: 'Hr'
-            },
-            {
-                id: 3,
-                value: moment().format('mm'),
-                period: 'Mins'
-            },
-            {
-                id: 4,
-                value: moment().format('ss'),
-                period: 'Sec'
-            }]
+            unitsOfMeasurements: [
+                {
+                    value: 'days',
+                    period: 'Days'
+                },
+                {
+                    value: 'hours',
+                    period: 'Hr'
+                },
+                {
+                    value: 'minutes',
+                    period: 'Mins'
+                },
+                {
+                    value: 'seconds',
+                    period: 'Sec'
+                }
+            ],
+            timer: null,
+            duration: null,
         }
     },
-    methods: {
+    mounted() {
+        const end = moment('2025-08-01')
 
-    }
+        this.timer = setInterval(() => {
+            if (this.duration !== null && this.duration <= 0) {
+                clearInterval(this.timer)
+            }
 
+            this.duration = moment.duration(end.diff(moment()))
+        }, 1000)
+    },
+    beforeUnmount() {
+        clearInterval(this.timer)
+    },
+    computed: {
+        getDate() {
+            return (key) => this.duration?.[key]()
+        },
+        getUnits() {
+            return this.unitsOfMeasurements.filter((el) => !!this.getDate(el.value) || el.value === 'seconds')
+        }
+    },
 }
 </script>
 
 <template>
-    <section style="position: absolute; left: 0; right: 0; box-shadow: inset 0px 7px 15px -3px rgba(0,0,0,0.1),inset 0px -7px 15px -3px rgba(0,0,0,0.1)" class="deals-of-month">
+    <section class="deals-of-month">
         <div class="box-mounth" style="overflow: hidden">
             <div class="box__info">
                 <div class="deals-of-month__info">
@@ -45,30 +63,35 @@ export default {
                     <p class="text poppins-regular">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Scelerisque duis ultrices sollicitudin aliquam sem. Scelerisque duis ultrices sollicitudin </p>
                     <Button>Buy Now</Button>
                 </div>
-                <h2 class="timer__title poppins-medium">Hurry, Before It’s Too Late!</h2>
-                <div class="timer">
-                    <div class="timer__span" v-for="(item, id) in unitsOfMeasurements" :key="id" >
-                        <span class="style-time  time">{{ item.value }}</span>
-                        <p class="style-p unitsOfMeasurement">{{ item.period }}</p>
+                <template v-if="getUnits.length > 1">
+                    <h2 class="timer__title poppins-medium">Hurry, Before It’s Too Late!</h2>
+                    <div class="timer">
+                        <div class="timer__span" v-for="(item, id) in getUnits" :key="id" >
+                            <div class="style-time time">{{ getDate(item.value) }}</div>
+                            <p class="style-p unitsOfMeasurement">{{ item.period }}</p>
+                        </div>
                     </div>
-                </div>
+                </template>
             </div>
             <div class="box__swiper">
                 <Swiper />
             </div>
         </div>
     </section>
+    
 </template>
 
 <style lang="sass" scoped>
+.deals-of-month
+    box-shadow: inset 0px 7px 15px -3px rgba(0,0,0,0.1),inset 0px -7px 15px -3px rgba(0,0,0,0.1)
+    &__info
+        padding-top: 155px
+        padding-bottom: 50px
+        width: 444px
+
 .box-mounth
     margin-left: 400px
     display: flex
-  
-.deals-of-month__info
-    padding-top: 155px
-    padding-bottom: 50px
-    width: 444px
 
 .title
     font-size: 46px
@@ -94,6 +117,7 @@ export default {
     box-shadow: inset 0px 7px 15px -3px rgba(0,0,0,0.1),inset 0px -7px 15px -3px rgba(0,0,0,0.1)
     border-radius: 10px
     font-size: 32px
+    min-width: 56px
 
 .style-p
     margin-top: 25px

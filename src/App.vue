@@ -3,13 +3,15 @@ import BrandLogos from './components/BrandLogos.vue';
 import DealTheMonth from './components/DealTheMonth.vue';
 import Header from './components/Header.vue';
 import UltimateSale from './components/UltimateSale.vue';
+import NewArrivals from './components/NewArrivals.vue';
 
 export default {
   components: {
     Header,
     UltimateSale,
     DealTheMonth,
-    BrandLogos
+    BrandLogos,
+    NewArrivals
   },
   data() {
     return {
@@ -29,7 +31,8 @@ export default {
         {
           image: '../src/assets/img/logo5.svg'
         }
-      ]
+      ],
+      
     }
   }
 }
@@ -41,11 +44,14 @@ export default {
     <UltimateSale/>
     <div class="brands-box">
     <BrandLogos 
-    v-for="item in items"
-    :key="item"
-    :image="item.image"/>
+      v-for="item in items"
+      :key="item"
+      :image="item.image"/>
     </div>
-    <DealTheMonth/>
+    <div class="deal-box">
+      <DealTheMonth/>
+    </div>
+    <NewArrivals/>
   </div>
 </template>
 
@@ -56,15 +62,21 @@ $color: #484848
 $color-btn: #000
 $pointer: pointer
 
-.brands-box
-  display: flex
-  justify-content: space-between
-  padding: 82px 0
-  
+
 .box
   max-width: 1280px
   margin: 0 auto
   
+.brands-box
+  display: flex
+  justify-content: space-between
+  padding: 82px 0
+
+.deal-box
+  width: 100%
+  justify-content: center
+  display: flex
+
 .wrapper 
   position: relative
   height: 756px
@@ -141,6 +153,7 @@ $pointer: pointer
   position: fixed
   right: 40px
   bottom: 30px
+  z-index: 100
 
   &__basket
     padding: 18px 18px 18px 16px
