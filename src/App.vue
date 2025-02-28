@@ -4,6 +4,7 @@ import DealTheMonth from './components/DealTheMonth.vue';
 import Header from './components/Header.vue';
 import UltimateSale from './components/UltimateSale.vue';
 import NewArrivals from './components/NewArrivals.vue';
+import PeakyBlinders from './components/PeakyBlinders.vue';
 
 export default {
   components: {
@@ -11,7 +12,8 @@ export default {
     UltimateSale,
     DealTheMonth,
     BrandLogos,
-    NewArrivals
+    NewArrivals,
+    PeakyBlinders
   },
   data() {
     return {
@@ -52,6 +54,9 @@ export default {
       <DealTheMonth/>
     </div>
     <NewArrivals/>
+    <div class="deal-box">
+      <PeakyBlinders/>
+    </div>
   </div>
 </template>
 

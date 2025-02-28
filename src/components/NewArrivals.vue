@@ -88,7 +88,7 @@ import Card from './Card.vue';
                 :price="cart.price"
                 :state="cart.state"/>
         </div>
-        <Button>View More</Button>
+        <Button style="margin: auto; display: flex;">View More</Button>
     </section>
 </template>
 
@@ -116,6 +116,7 @@ import Card from './Card.vue';
         width: 1280px
         padding: 50px 0
         justify-content: center
+        
 .header
     font-size: 48px
     text-align: center
